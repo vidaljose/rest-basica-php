@@ -28,13 +28,10 @@ if (isset($_GET['url'])) {
         }
     } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $postBody = file_get_contents("php://input"); //aqui trae la informacion del post
-        //print_r(json_decode($postBody));
+        print_r(json_decode($postBody));
         $convertir = json_decode($postBody,true);
         if(json_last_error() == 0){
-            
-            //print_r($convertir);
             http_response_code(200);
-
 
             switch ($var) {
                 case "productos";
@@ -42,8 +39,8 @@ if (isset($_GET['url'])) {
                     crearProducto($convertir);
                     http_response_code(200);
                     break;
-               
-    
+
+
                 default;
             }
 
@@ -54,7 +51,7 @@ if (isset($_GET['url'])) {
     } else {
         http_response_code(405);
     }
-}else{
+} else {
     //meta data
-    
+
 }
